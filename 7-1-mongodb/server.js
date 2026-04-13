@@ -188,7 +188,7 @@
 import mongoose from "mongoose";
 
 // establish connection
-const connectionString = "mongodb+srv://s202271080_db_user:MAJ1919@cluster0.7hag5cd.mongodb.net/TestDB?retryWrites=true&w=majority";
+const connectionString = "mongodb+srv://s202271080_db_user:Password@cluster0.7hag5cd.mongodb.net/TestDB?retryWrites=true&w=majority";
 
 mongoose.connect(connectionString)
   .then(() => console.log("✅ MongoDB Connected..."))
