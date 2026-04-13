@@ -185,20 +185,47 @@
  */
 
 // import mongoose
+import mongoose from "mongoose";
 
 // establish connection
+// establish connection
+const connectionString = "mongodb://s202271080_db_user:MAJ1919@ac-0fxhi8y-shard-00-00.7hag5cd.mongodb.net:27017,ac-0fxhi8y-shard-00-01.7hag5cd.mongodb.net:27017,ac-0fxhi8y-shard-00-02.7hag5cd.mongodb.net:27017/?ssl=true&replicaSet=atlas-p7k97v-shard-0&authSource=admin&appName=Cluster0";
 
-
+mongoose.connect(connectionString)
+  .then(() => console.log("✅ MongoDB Connected..."))
+  .catch(err => console.error("❌ Connection Error:", err));
 // define schema
+const studentSchema = new mongoose.Schema({
+    name: String,
+    age: Number,
+    major: String
+});
 
+const Student = mongoose.model("Student", studentSchema);
 
 // create document
-
+async function createStudents() {
+    await Student.insertMany([
+        { name: "Ali", age: 21, major: "CS" },
+        { name: "Sara", age: 23, major: "SE" }
+    ]);
+    console.log("✅ Inserted");
+}
 
 // read document
-
+async function readStudents() {
+    const all = await Student.find();
+    console.log(all);
+}
 
 // update document
-
+async function updateStudent() {
+    await Student.updateOne({ name: "Ali" }, { age: 22 });
+    console.log("✅ Updated Ali");
+}
 
 // delete document
+async function deleteStudent() {
+    await Student.deleteOne({ name: "Sara" });
+    console.log("✅ Deleted Sara");
+}
