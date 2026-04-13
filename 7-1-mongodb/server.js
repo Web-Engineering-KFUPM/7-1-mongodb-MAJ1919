@@ -188,8 +188,7 @@
 import mongoose from "mongoose";
 
 // establish connection
-// establish connection
-const connectionString = "mongodb://s202271080_db_user:MAJ1919@ac-0fxhi8y-shard-00-00.7hag5cd.mongodb.net:27017,ac-0fxhi8y-shard-00-01.7hag5cd.mongodb.net:27017,ac-0fxhi8y-shard-00-02.7hag5cd.mongodb.net:27017/?ssl=true&replicaSet=atlas-p7k97v-shard-0&authSource=admin&appName=Cluster0";
+const connectionString = "mongodb+srv://s202271080_db_user:MAJ1919@cluster0.7hag5cd.mongodb.net/TestDB?retryWrites=true&w=majority";
 
 mongoose.connect(connectionString)
   .then(() => console.log("✅ MongoDB Connected..."))
@@ -229,3 +228,7 @@ async function deleteStudent() {
     await Student.deleteOne({ name: "Sara" });
     console.log("✅ Deleted Sara");
 }
+createStudents();
+readStudents();
+updateStudent();
+deleteStudent();
